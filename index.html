@@ -1,6 +1,9 @@
 <!doctype html>
-<html>
+<html lang="pt-BR">
   <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>React Calculator</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <style>
@@ -75,11 +78,29 @@
       .form-group {
         margin-bottom: 20px;
       }
+      .calculator-history {
+        font-family: monospace;
+        font-size: 10;
+        color: #666;
+        max-height: 10em;
+        overflow: auto;
+      }
+
+      .calculator-history .list-group {
+        list-style-type: none;
+        padding: 1em;
+      }
+
+      .calculator-history .list-group .list-group-item {
+        background-color: #E3E3E3;
+        padding: 1em;
+        margin-bottom: .25em;
+      }
     </style>
   </head>
   <body>
-    <div id='root'>
-    </div>
-    <script src="/static/bundle.js"></script>
+    <main id='root'>
+    </main>
+    <script type="text/javascript" src="/static/bundle.js"></script>
   </body>
 </html>

@@ -1,25 +1,22 @@
 import React from 'react';
 import Display from './Display';
 import Button from './Button';
+import History from './History';
+import autoBind from 'react-autobind';
 
 export default class Calculator extends React.Component {
   constructor(props) {
      super(props);
+     autoBind(this);
      this.state = {
         calc: '',
         history: []
      };
-
-     this.buttonClick = this.buttonClick.bind(this);
-     this.submitCalc = this.submitCalc.bind(this);
-     this.clear = this.clear.bind(this);
   }
 
-  buttonClick() {
-    return (e) => {
-      const calc = this.state.calc + e.target.innerText;
-      this.setState({ ...this.state, calc });
-    };
+  buttonClick(e) {
+    const calc = this.state.calc + e.target.innerText;
+    this.setState({ ...this.state, calc });
   }
 
   submitCalc() {
@@ -42,31 +39,31 @@ export default class Calculator extends React.Component {
       <div id="calculator">
         <Display value={this.state.calc} disabled="disabled" />
         <div className="calculator-buttons">
-          <Button onClick={this.buttonClick()}>7</Button>
-          <Button onClick={this.buttonClick()}>8</Button>
-          <Button onClick={this.buttonClick()}>9</Button>
+          <Button onClick={this.buttonClick}>7</Button>
+          <Button onClick={this.buttonClick}>8</Button>
+          <Button onClick={this.buttonClick}>9</Button>
           <div className="clearfix"></div>
 
-          <Button onClick={this.buttonClick()}>4</Button>
-          <Button onClick={this.buttonClick()}>5</Button>
-          <Button onClick={this.buttonClick()}>6</Button>
+          <Button onClick={this.buttonClick}>4</Button>
+          <Button onClick={this.buttonClick}>5</Button>
+          <Button onClick={this.buttonClick}>6</Button>
           <div className="clearfix"></div>
 
-          <Button onClick={this.buttonClick()}>1</Button>
-          <Button onClick={this.buttonClick()}>2</Button>
-          <Button onClick={this.buttonClick()}>3</Button>
+          <Button onClick={this.buttonClick}>1</Button>
+          <Button onClick={this.buttonClick}>2</Button>
+          <Button onClick={this.buttonClick}>3</Button>
           <div className="clearfix"></div>
 
-          <Button onClick={this.buttonClick()}>0</Button>
+          <Button onClick={this.buttonClick}>0</Button>
         </div>
 
         <div className="calculator-action-buttons">
-          <Button onClick={this.buttonClick()}>+</Button>
-          <Button onClick={this.buttonClick()}>-</Button>
+          <Button onClick={this.buttonClick}>+</Button>
+          <Button onClick={this.buttonClick}>-</Button>
           <div className="clearfix"></div>
 
-          <Button onClick={this.buttonClick()}>*</Button>
-          <Button onClick={this.buttonClick()}>/</Button>
+          <Button onClick={this.buttonClick}>*</Button>
+          <Button onClick={this.buttonClick}>/</Button>
           <div className="clearfix"></div>
 
           <Button onClick={this.submitCalc}>=</Button>
@@ -74,6 +71,7 @@ export default class Calculator extends React.Component {
           <div className="clearfix"></div>
         </div>
         <div className="clearfix"></div>
+        <History history={this.state.history} />
      </div>
    );
   }

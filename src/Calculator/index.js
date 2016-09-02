@@ -33,10 +33,14 @@ export default class Calculator extends React.Component {
     this.setState({ ...this.state, history, calc });
   }
 
-  clear() {
+  backspace() {
     let calc = this.state.calc;
     calc = calc.slice(0, calc.length - 1);
     this.setState({ ...this.state, calc });
+  }
+
+  clear() {
+    this.setState({ ...this.state, calc: '' });
   }
 
   render() {
@@ -44,9 +48,10 @@ export default class Calculator extends React.Component {
       <div id="calculator">
         <Display value={this.state.calc} disabled="disabled" />
         <div className="calculator-buttons">
-          {[7, 8, 9, 4, 5, 6, 1, 2, 3, 0].map(n => 
+          {[7, 8, 9, 4, 5, 6, 1, 2, 3,'.', 0].map(n => 
             <Button key={n} onClick={this.buttonClick}>{n}</Button>
           )}
+          <Button onClick={this.backspace}>&larr;</Button>
         </div>
         <div className="calculator-action-buttons">
           {['+', '-', '*', '/'].map(a => 

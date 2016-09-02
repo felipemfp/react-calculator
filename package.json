@@ -5,7 +5,7 @@
   "scripts": {
     "start": "node server.js",
     "lint": "eslint src",
-    "production": "webpack -p"
+    "production": "webpack -p --config webpack.config.prod.js"
   },
   "author": "Stefan Yohansson <sy.fen0@gmail.com> (http://github.com/StefanYohansson)",
   "license": "MIT",

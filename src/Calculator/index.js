@@ -21,17 +21,22 @@ export default class Calculator extends React.Component {
 
   submitCalc() {
     const result = eval(this.state.calc);
+    let {history} = this.state;
     let calc = `${this.state.calc} = ${result}`;
-    const history = [
-       ...this.state.history,
-       calc
-    ];
+    if (calc !== history[0]) {
+      history = [
+        calc,
+        ...history
+      ];
+    }
     calc = result;
     this.setState({ ...this.state, history, calc });
   }
 
   clear() {
-    this.setState({ ...this.state, calc: '' });
+    let calc = this.state.calc;
+    calc = calc.slice(0, calc.length - 1);
+    this.setState({ ...this.state, calc });
   }
 
   render() {
@@ -39,36 +44,16 @@ export default class Calculator extends React.Component {
       <div id="calculator">
         <Display value={this.state.calc} disabled="disabled" />
         <div className="calculator-buttons">
-          <Button onClick={this.buttonClick}>7</Button>
-          <Button onClick={this.buttonClick}>8</Button>
-          <Button onClick={this.buttonClick}>9</Button>
-          <div className="clearfix"></div>
-
-          <Button onClick={this.buttonClick}>4</Button>
-          <Button onClick={this.buttonClick}>5</Button>
-          <Button onClick={this.buttonClick}>6</Button>
-          <div className="clearfix"></div>
-
-          <Button onClick={this.buttonClick}>1</Button>
-          <Button onClick={this.buttonClick}>2</Button>
-          <Button onClick={this.buttonClick}>3</Button>
-          <div className="clearfix"></div>
-
-          <Button onClick={this.buttonClick}>0</Button>
+          {[7, 8, 9, 4, 5, 6, 1, 2, 3, 0].map(n => 
+            <Button key={n} onClick={this.buttonClick}>{n}</Button>
+          )}
         </div>
-
         <div className="calculator-action-buttons">
-          <Button onClick={this.buttonClick}>+</Button>
-          <Button onClick={this.buttonClick}>-</Button>
-          <div className="clearfix"></div>
-
-          <Button onClick={this.buttonClick}>*</Button>
-          <Button onClick={this.buttonClick}>/</Button>
-          <div className="clearfix"></div>
-
+          {['+', '-', '*', '/'].map(a => 
+            <Button key={a} onClick={this.buttonClick}>{a}</Button>
+          )}
           <Button onClick={this.submitCalc}>=</Button>
           <Button onClick={this.clear}>CR</Button>
-          <div className="clearfix"></div>
         </div>
         <div className="clearfix"></div>
         <History history={this.state.history} />

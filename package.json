@@ -4,7 +4,8 @@
   "description": "React toy calculator",
   "scripts": {
     "start": "node server.js",
-    "lint": "eslint src"
+    "lint": "eslint src",
+    "production": "webpack -p"
   },
   "author": "Stefan Yohansson <sy.fen0@gmail.com> (http://github.com/StefanYohansson)",
   "license": "MIT",
